@@ -2,7 +2,7 @@
     <div class="col-6">    
         <form method="GET" action="/listCity" >
             <label for="countrySelection">Select a Country</label>
-            <select class="form-control" name="countrySelection" id="countrySelection" onchange="this.form.submit()">
+            <select class="form-control" name="country" id="countrySelection" onchange="this.form.submit()">
                 {{#if hasCtry}}
                 <option selected value="{{Ctry.Code}}">{{Ctry.Name}}</option>
                 {{else}}
@@ -10,19 +10,18 @@
                 {{/if}}
                 {{#each countryList}}
                 <option value="{{this.Code}}">{{this.Name}}</option>
-                {{/each}}
-                
+                {{/each}}               
             </select>
             <br><br>
         </form>
 
         <form method="GET" action="/retrieve" >
             <label for="citySelection">Select a City</label>
-            <select class="form-control" name="citySelection" id="citySelection" required>
+            <select class="form-control" name="city" id="citySelection" required>
                 {{#if hasCtry}}
                 <option selected disabled value="">Choose a city...</option>
                 {{#each cityList}}
-                <option value="{{this.id}}">{{this.name}}</option>
+                <option value="{{this.name}}">{{this.state}} - {{this.name}}</option>
                 {{/each}}
                 {{else}}
                 <option selected disabled value="">Choose a city...</option>
@@ -33,4 +32,21 @@
             <button class="btn btn-primary" type="submit">Submit form</button>
         </form>
     </div>
+</div>
+
+
+<div class="container">
+  <h2>Filterable Dropdown</h2>
+  <p>Open the dropdown menu and type something in the input field to search for dropdown items:</p>
+  <p>Note that we have styled the input field to fit the dropdown items.</p>
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      <input class="form-control" id="myInput" type="text" placeholder="Search..">
+                {{#each countryList}}
+                <option value="{{this.Code}}">{{this.Name}}</option>
+                {{/each}}  
+    </ul>
+  </div>
 </div>
